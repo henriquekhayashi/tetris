@@ -22,6 +22,11 @@ void init(char matrix[ROWS][COLUMNS])
     {
         for(j=0; j<COLUMNS; j++)
         {
+            if(i==0)matrix[i][j] = '*';
+            else if(i==ROWS-1)matrix[i][j] = '*';
+            else if(j==0)matrix[i][j] = '*';
+            else if(j==COLUMNS-1)matrix[i][j] = '*';
+            else
             matrix[i][j] = ' ';
         }   
     }
