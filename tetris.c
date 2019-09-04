@@ -22,11 +22,11 @@ void init(char matrix[ROWS][COLUMNS])
     {
         for(j=0; j<COLUMNS; j++)
         {
-            if(i==0)matrix[i][j] = '*';
+            /* if(i==0)matrix[i][j] = '*';
             else if(i==ROWS-1)matrix[i][j] = '*';
             else if(j==0)matrix[i][j] = '*';
             else if(j==COLUMNS-1)matrix[i][j] = '*';
-            else
+            else*/
             //if( i!=0 && i!=ROWS-1 && J!=0 && J!=ROWS-1)
             matrix[i][j] = ' ';
         }   
@@ -41,13 +41,36 @@ void init(char matrix[ROWS][COLUMNS])
 void printMatrix(char matrix[ROWS][COLUMNS])
 {
     int i,j;
+    //borda de cima
+     for(j=0; j<COLUMNS+2; j++)
+        {
+           printf("*");
+        }
 
+    printf("\n");
+
+    //correr pelo y da matriz
     for(i=0; i<ROWS; i++)
     {
+        //print borda esquerda
+        printf("*");
+
+        //correr pelo x da matriz
         for(j=0; j<COLUMNS; j++)
         {
+            //print mapa
             printf("%c", matrix[i][j]);
-        }   
+        }
+
+        //print borda direita
+        printf("*");  
+
         printf("\n");
     }
+
+    //borda debaixo
+    for(j=0; j<COLUMNS+2; j++)
+        {
+           printf("*");
+        }
 }
