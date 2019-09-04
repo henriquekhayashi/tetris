@@ -27,6 +27,7 @@ void init(char matrix[ROWS][COLUMNS])
             else if(j==0)matrix[i][j] = '*';
             else if(j==COLUMNS-1)matrix[i][j] = '*';
             else
+            //if( i!=0 && i!=ROWS-1 && J!=0 && J!=ROWS-1)
             matrix[i][j] = ' ';
         }   
     }
