@@ -68,7 +68,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
         printf("\n");
     }
 
-    //borda debaixo
+    //print borda debaixo
     for(j=0; j<COLUMNS+2; j++)
         {
            printf("*");
