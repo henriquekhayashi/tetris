@@ -42,6 +42,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
 {
     int i,j;
     //borda de cima
+    printf("\n");
     printf("\t\t\t\t\t");
      for(j=0; j<COLUMNS+2; j++)
         {
