@@ -42,6 +42,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
 {
     int i,j;
     //borda de cima
+    printf("\t\t\t\t\t");
      for(j=0; j<COLUMNS+2; j++)
         {
            printf("*");
@@ -53,6 +54,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
     for(i=0; i<ROWS; i++)
     {
         //print borda esquerda
+        printf("\t\t\t\t\t");
         printf("*");
 
         //correr pelo x da matriz
@@ -63,14 +65,17 @@ void printMatrix(char matrix[ROWS][COLUMNS])
         }
 
         //print borda direita
+        
         printf("*");  
 
         printf("\n");
     }
 
     //print borda debaixo
+    printf("\t\t\t\t\t");
     for(j=0; j<COLUMNS+2; j++)
         {
+        
            printf("*");
         }
 }
