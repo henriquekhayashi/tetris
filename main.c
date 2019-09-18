@@ -64,26 +64,29 @@ main()
 
     if(kbhit()){
         tecla = getch();
-        /*if(tecla == 'a')
-        posJ--;*/
+       
         m = tecla;
     }
 
   
-  
+    /*
+    sem if 224 ele precisa fazer o loop uma segunda vez para exectuar o movimento
+    224
+    75 ou 77
+    */
 
     switch(tecla){
-        //case 224: 
-            //if(kbhit()) tecla = getch();
-               // switch(tecla){
+        case 224: 
+            if(kbhit()) tecla = getch();
+                switch(tecla){
                     case 75: 
                         if(posJ > 0)posJ--;
                     break;
                     case 77: 
                         if(posJ < COLUMNS-1)posJ++;
                     break;
-                //}
-        //break;
+                }
+        break;
         case 97: 
             if(posJ > 0)posJ--;
         break;
