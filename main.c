@@ -65,21 +65,8 @@ main()
 
 
     //escreve@
-    switch(tijolo.orientacao){
-    case ORIENTACAO_UP:
-        matrix[tijolo.i][tijolo.j] = PIXEL;
-        if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = PIXEL;
-        if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = PIXEL;
-        if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = PIXEL;
-        break;
-    case ORIENTACAO_LEFT:
-        matrix[tijolo.i][tijolo.j] = PIXEL;
-        if(tijolo.i-1>=0) matrix[tijolo.i][tijolo.j-1] = PIXEL;
-        if(tijolo.i-2>=0) matrix[tijolo.i][tijolo.j-2] = PIXEL;
-        if(tijolo.i-3>=0) matrix[tijolo.i][tijolo.j-3] = PIXEL;
-        //FUNCAO DESENHAR
-        break;
-    }
+     drawBar(matrix, &tijolo, PIXEL);
+    
     printMatrix(matrix);
    
    //print tecla
@@ -92,20 +79,9 @@ main()
     */
     //matrix[posI][posJ] = ' ';
 
-    switch(tijolo.orientacao){
-    case ORIENTACAO_UP:
-    matrix[tijolo.i][tijolo.j] = EMPTY;
-    if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = EMPTY;
-    if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = EMPTY;
-    if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = EMPTY;
-        break;
-    case ORIENTACAO_LEFT:
-        matrix[tijolo.i][tijolo.j] = EMPTY;
-        if(tijolo.i-1>=0) matrix[tijolo.i][tijolo.j-1] = EMPTY;
-        if(tijolo.i-2>=0) matrix[tijolo.i][tijolo.j-2] = EMPTY;
-        if(tijolo.i-3>=0) matrix[tijolo.i][tijolo.j-3] = EMPTY;
-        break;
-    }
+
+    //APAGAR
+  drawBar(matrix, tijolo, EMPTY);
     //224
 
    // walk down
@@ -147,7 +123,7 @@ main()
         case 114:
 
             if(tijolo.orientacao == ORIENTACAO_UP)tijolo.orientacao = ORIENTACAO_LEFT;
-            //if(tijolo.orientacao == ORIENTACAO_LEFT)tijolo.orientacao = ORIENTACAO_UP;
+            else if(tijolo.orientacao == ORIENTACAO_LEFT)tijolo.orientacao = ORIENTACAO_UP;
         break;
     }
 

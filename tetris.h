@@ -66,3 +66,5 @@ void init(char matrix[ROWS][COLUMNS]);
     do computador.
 */
 void printMatrix(char matrix[ROWS][COLUMNS]);
+
+void drawbar(char matrix[ROWS][COLUMNS], Bloco* barra, int simbolo); 
