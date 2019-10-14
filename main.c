@@ -13,13 +13,14 @@ data:28/08/2019
 */
 
 #include "tetris.h"
+#include "display.h"
 #define DEBUG 1
 /*
     Parte principal do programa, responsável por iniciar
     chamar e as funções auxiliares.
 */
 
-main()
+int main()
 {
     char matrix [ROWS][COLUMNS];
     //int posI, posJ;
@@ -33,8 +34,7 @@ main()
     tijolo.width = 1;
     tijolo.height = 4;
 
-   // posI = ROWS/2;
-   // posJ = COLUMNS/2;
+
    
     //inicializando matriz
     init(matrix);
@@ -47,8 +47,7 @@ main()
    
     system("cls");
    
-   //while(tecla != 27){ /*!kbhit()*/
-    while(1){ /*!kbhit()*/
+    while(1){ 
         
         
             gotoxy(0,0);
@@ -58,31 +57,14 @@ main()
         printf("@ = (%d,%d)\n", tijolo.i, tijolo.j);
     #endif
     
-    //apaga @
-    //matrix[posI][posJ+1] = ' ';
-    //matrix[posI-1][posJ] = ' ';
-    
-
-
-    //escreve@
+      //escreve@
      drawBar(matrix, &tijolo, PIXEL);
     
     printMatrix(matrix);
-   
-   //print tecla
-    //printf("%d", m);
-   
-    //b = getch();
-    //if(posJ>COLUMNS-COLUMNS) posJ--;
-    //walk left
-    /*if(posJ>0) posJ--;
-    */
-    //matrix[posI][posJ] = ' ';
-
-
+      
     //APAGAR
-  drawBar(matrix, tijolo, EMPTY);
-    //224
+  drawBar(matrix, &tijolo, EMPTY);
+    
 
    // walk down
     if(tijolo.i<ROWS-1) tijolo.i++;
@@ -92,35 +74,28 @@ main()
     if(kbhit()){
         tecla = getch();
        
-       //print tecla
-        //m = tecla;
+      
     }
 
-  
-    /*
-    sem if 224 ele precisa fazer o loop uma segunda vez para exectuar o movimento
-    224
-    75 ou 77
-    */
-
+    //MOVER
     switch(tecla){
-        case 224: 
+        case ARROWS: 
             if(kbhit()) tecla = getch();
                 switch(tecla){
-                    case 75: 
+                    case LEFT: 
                         if(tijolo.j > 0)tijolo.j--;
                     break;
-                    case 77: 
+                    case RIGHT: 
                         if(tijolo.j < COLUMNS-1)tijolo.j++;
                     break;
                 }
         break;
-        case 97: 
+        case TECLA_A: 
             if(tijolo.j > 0)tijolo.j--;
         break;
-        case 100: 
+        case TECLA_D: 
             if(tijolo.j < COLUMNS-1)tijolo.j++;
-        case 114:
+        case TECLA_R: //GIRAR
 
             if(tijolo.orientacao == ORIENTACAO_UP)tijolo.orientacao = ORIENTACAO_LEFT;
             else if(tijolo.orientacao == ORIENTACAO_LEFT)tijolo.orientacao = ORIENTACAO_UP;
@@ -128,7 +103,7 @@ main()
     }
 
     // sair com esc
-    if (tecla == 27) break;
+    if (tecla == ESC) break;
 
     //apaga tecla
     tecla = 0;
@@ -139,6 +114,7 @@ main()
     
     system("PAUSE");
     
+    return 0;
 }
 
 

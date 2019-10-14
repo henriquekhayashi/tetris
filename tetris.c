@@ -22,12 +22,6 @@ void init(char matrix[ROWS][COLUMNS])
     {
         for(j=0; j<COLUMNS; j++)
         {
-            /* if(i==0)matrix[i][j] = '*';
-            else if(i==ROWS-1)matrix[i][j] = '*';
-            else if(j==0)matrix[i][j] = '*';
-            else if(j==COLUMNS-1)matrix[i][j] = '*';
-            else*/
-            //if( i!=0 && i!=ROWS-1 && J!=0 && J!=ROWS-1)
             matrix[i][j] = ' ';
         }   
     }
@@ -93,10 +87,8 @@ switch(barra->orientacao){
     case ORIENTACAO_LEFT:
         
 
-        if(barra->j-1<=0) barra->j++;
-        matrix[barra->i][barra->j-1] = simbolo;
-        if(barra->j-2<=0) barra->j+=2;
-        matrix[barra->i][barra->j-2] = simbolo;        
+        if(barra->j-1>=0) matrix[barra->i][barra->j-1] = simbolo;
+        if(barra->j-2>=0) matrix[barra->i][barra->j-2] = simbolo;        
         if(barra->j+1<=COLUMNS) matrix[barra->i][barra->j+1] = simbolo;
         matrix[barra->i][barra->j] = simbolo;
         break;

@@ -9,7 +9,7 @@ data:28/08/2019
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <conio.h>
+#include <conio.h>
 
 //Configuração das dimensoes da matriz principal do jogo
 #define COLUMNS 60
@@ -21,7 +21,8 @@ data:28/08/2019
 #define LEFT 75
 #define RIGHT 77
 #define TECLA_A 97
-#define TECLA_B 100
+#define TECLA_D 100
+#define TECLA_R 114
 
 //Criando as orientações das peças
 #define ORIENTACAO_UP 1
@@ -67,4 +68,4 @@ void init(char matrix[ROWS][COLUMNS]);
 */
 void printMatrix(char matrix[ROWS][COLUMNS]);
 
-void drawbar(char matrix[ROWS][COLUMNS], Bloco* barra, int simbolo); 
+void drawBar(char matrix[ROWS][COLUMNS], Bloco* barra, int simbolo); 
