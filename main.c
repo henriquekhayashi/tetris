@@ -32,7 +32,7 @@ int main()
     tijolo.tipo = TIPO_I;
     tijolo.orientacao = ORIENTACAO_UP;
     tijolo.width = 1;
-    tijolo.height = 4;
+    tijolo.height = 5;
 
 
    
@@ -55,6 +55,7 @@ int main()
     //print posição do @
     #if DEBUG == 1
         printf("@ = (%d,%d)\n", tijolo.i, tijolo.j);
+        printf("dimensao = (%d, %d)\n", tijolo.width, tijolo.height);
     #endif
     
       //escreve@
@@ -83,10 +84,12 @@ int main()
             if(kbhit()) tecla = getch();
                 switch(tecla){
                     case LEFT: 
-                        if(tijolo.j > 0)tijolo.j--;
+                        if(tijolo.j - tijolo.width/2 > 0 ) tijolo.j--;
+                        //else if(tijolo.j > 0 && tijolo.orientacao != ORIENTACAO_LEFT  )tijolo.j--;
+                        
                     break;
                     case RIGHT: 
-                        if(tijolo.j < COLUMNS-1)tijolo.j++;
+                        if(tijolo.j + tijolo.width/2 < COLUMNS-1)tijolo.j++;
                     break;
                 }
         break;
@@ -99,6 +102,18 @@ int main()
 
             if(tijolo.orientacao == ORIENTACAO_UP)tijolo.orientacao = ORIENTACAO_LEFT;
             else if(tijolo.orientacao == ORIENTACAO_LEFT)tijolo.orientacao = ORIENTACAO_UP;
+            
+            //right to up
+            //else tijolo.orientacao++;
+
+            //inverte dimensoes
+            int aux = tijolo.width;
+            tijolo.width = tijolo.height;
+            tijolo.height = aux;
+
+            //resolvendo bug dos cantos    
+            if(tijolo.j< (tijolo.width/2)) tijolo.j=tijolo.width/2;
+            if(tijolo.j> COLUMNS - (tijolo.width/2) -1) tijolo.j= COLUMNS - (tijolo.width/2) -1;
         break;
     }
 

@@ -8,6 +8,7 @@ data:28/08/2019
 */
 
 #include "tetris.h"
+#define ESPACO "\t\t\t\t"
 
 /*
     Inicializa a matriz principal com 'espaços vazios'
@@ -37,7 +38,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
     int i,j;
     //borda de cima
     printf("\n");
-    printf("\t\t\t\t\t");
+    printf(ESPACO);
      for(j=0; j<COLUMNS+2; j++)
         {
            printf("*");
@@ -49,7 +50,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
     for(i=0; i<ROWS; i++)
     {
         //print borda esquerda
-        printf("\t\t\t\t\t");
+        printf(ESPACO);
         printf("*");
 
         //correr pelo x da matriz
@@ -67,7 +68,7 @@ void printMatrix(char matrix[ROWS][COLUMNS])
     }
 
     //print borda debaixo
-    printf("\t\t\t\t\t");
+    printf(ESPACO);
     for(j=0; j<COLUMNS+2; j++)
         {
         
@@ -79,17 +80,21 @@ void printMatrix(char matrix[ROWS][COLUMNS])
 void drawBar(char matrix[ROWS][COLUMNS], Bloco *barra, int simbolo){
 switch(barra->orientacao){
     case ORIENTACAO_UP:
-       matrix[barra->i][barra->j] = simbolo;
+        matrix[barra->i][barra->j] = simbolo;
         if(barra->i-1>=0) matrix[barra->i-1][barra->j] = simbolo;
         if(barra->i-2>=0) matrix[barra->i-2][barra->j] = simbolo;
         if(barra->i-3>=0) matrix[barra->i-3][barra->j] = simbolo;
+        if(barra->i-4>=0) matrix[barra->i-4][barra->j] = simbolo;
         break;
     case ORIENTACAO_LEFT:
         
-
-        if(barra->j-1>=0) matrix[barra->i][barra->j-1] = simbolo;
-        if(barra->j-2>=0) matrix[barra->i][barra->j-2] = simbolo;        
-        if(barra->j+1<=COLUMNS) matrix[barra->i][barra->j+1] = simbolo;
+        //if(barra->j-1>=0) 
+        //if(barra->j-2>=0)
+        //if(barra->j+1<=COLUMNS)
+        matrix[barra->i][barra->j-1] = simbolo;
+        matrix[barra->i][barra->j-2] = simbolo;        
+        matrix[barra->i][barra->j+1] = simbolo;
+        matrix[barra->i][barra->j+2] = simbolo;
         matrix[barra->i][barra->j] = simbolo;
         break;
     }
