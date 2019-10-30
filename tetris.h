@@ -26,8 +26,8 @@ data:28/08/2019
 
 //Criando as orientações das peças
 #define ORIENTACAO_UP 1
-#define ORIENTACAO_DOWN 2
-#define ORIENTACAO_LEFT 3
+#define ORIENTACAO_LEFT 2
+#define ORIENTACAO_DOWN 3
 #define ORIENTACAO_RIGHT 4
 
 //Criando os tipos de peças
@@ -69,3 +69,15 @@ void init(char matrix[ROWS][COLUMNS]);
 void printMatrix(char matrix[ROWS][COLUMNS]);
 
 void drawBar(char matrix[ROWS][COLUMNS], Bloco* barra, int simbolo); 
+
+/*
+    Inicializar peça do tipo barra
+*/
+void initBar(Bloco *barra);
+
+/*
+    rotacionar peça
+*/
+void rotate(Bloco *barra);
+
+int collisionDetect(char matrix[ROWS][COLUMNS],Bloco barra);

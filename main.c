@@ -27,14 +27,21 @@ int main()
     Bloco tijolo;
 
     //posição inicial do personagem
-    tijolo.i=0;
+ /* tijolo.i=0;
     tijolo.j = COLUMNS/2;
     tijolo.tipo = TIPO_I;
     tijolo.orientacao = ORIENTACAO_UP;
     tijolo.width = 1;
     tijolo.height = 5;
+*/
 
+    //apagar o cursor da tela
+    ShowConsoleCursor(0);
+   
+    system("cls");
 
+    //posicao inicial do personagem
+    initBar(&tijolo);
    
     //inicializando matriz
     init(matrix);
@@ -42,10 +49,7 @@ int main()
 
     int tecla;
 
-    //apagar o cursor da tela
-    ShowConsoleCursor(0);
    
-    system("cls");
    
     while(1){ 
         
@@ -54,7 +58,7 @@ int main()
     
     //print posição do @
     #if DEBUG == 1
-        printf("@ = (%d,%d)\n", tijolo.i, tijolo.j);
+        printf("posicao = (%d,%d)\n", tijolo.i, tijolo.j);
         printf("dimensao = (%d, %d)\n", tijolo.width, tijolo.height);
     #endif
     
@@ -62,13 +66,22 @@ int main()
      drawBar(matrix, &tijolo, PIXEL);
     
     printMatrix(matrix);
-      
+    
     //APAGAR
-  drawBar(matrix, &tijolo, EMPTY);
+    
+    if(!collisionDetect(matrix, tijolo)){
+        drawBar(matrix, &tijolo, EMPTY);
+    
+        // faz posilçao ir para baixo
+        if(tijolo.i<ROWS-1) tijolo.i++;
+    }else{
+        initBar(&tijolo);
+    }
+    
+  //drawBar(matrix, &tijolo, EMPTY);
     
 
-   // walk down
-    if(tijolo.i<ROWS-1) tijolo.i++;
+   
 
     
 
@@ -98,22 +111,10 @@ int main()
         break;
         case TECLA_D: 
             if(tijolo.j < COLUMNS-1)tijolo.j++;
+        case 'R':
         case TECLA_R: //GIRAR
 
-            if(tijolo.orientacao == ORIENTACAO_UP)tijolo.orientacao = ORIENTACAO_LEFT;
-            else if(tijolo.orientacao == ORIENTACAO_LEFT)tijolo.orientacao = ORIENTACAO_UP;
-            
-            //right to up
-            //else tijolo.orientacao++;
-
-            //inverte dimensoes
-            int aux = tijolo.width;
-            tijolo.width = tijolo.height;
-            tijolo.height = aux;
-
-            //resolvendo bug dos cantos    
-            if(tijolo.j< (tijolo.width/2)) tijolo.j=tijolo.width/2;
-            if(tijolo.j> COLUMNS - (tijolo.width/2) -1) tijolo.j= COLUMNS - (tijolo.width/2) -1;
+           rotate(&tijolo);
         break;
     }
 
