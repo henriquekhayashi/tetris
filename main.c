@@ -49,6 +49,7 @@ int main()
 
     int tecla;
 
+    int i;
    
    
     while(1){ 
@@ -60,6 +61,9 @@ int main()
     #if DEBUG == 1
         printf("posicao = (%d,%d)\n", tijolo.i, tijolo.j);
         printf("dimensao = (%d, %d)\n", tijolo.width, tijolo.height);
+                
+        //matrix[(tijolo.i + tijolo.height/2)+1][tijolo.j]
+        
     #endif
     
       //escreve@
@@ -69,11 +73,11 @@ int main()
     
     //APAGAR
     
-    if(!collisionDetect(matrix, tijolo)){
+    if(!collisionDetect(matrix, tijolo, 0)){
         drawBar(matrix, &tijolo, EMPTY);
-    
-        // faz posilçao ir para baixo
-        if(tijolo.i<ROWS-1) tijolo.i++;
+        tijolo.i++;
+        // faz posiçao ir para baixo
+        //if(tijolo.i<ROWS-1) 
     }else{
         initBar(&tijolo);
     }
@@ -82,7 +86,7 @@ int main()
     
 
    
-
+  //  int m = getch();
     
 
     if(kbhit()){
@@ -97,23 +101,34 @@ int main()
             if(kbhit()) tecla = getch();
                 switch(tecla){
                     case LEFT: 
-                        if(tijolo.j - tijolo.width/2 > 0 ) tijolo.j--;
-                        //else if(tijolo.j > 0 && tijolo.orientacao != ORIENTACAO_LEFT  )tijolo.j--;
-                        
+                        if(tijolo.j - tijolo.width/2 > 0 )
+                                                               
+                        if(!collisionDetect(matrix, tijolo, LEFT))
+                         tijolo.j--;
                     break;
+
                     case RIGHT: 
-                        if(tijolo.j + tijolo.width/2 < COLUMNS-1)tijolo.j++;
+                        if(tijolo.j + tijolo.width/2 < COLUMNS-1)
+                        if(!collisionDetect(matrix, tijolo, RIGHT))
+                        tijolo.j++;
                     break;
                 }
         break;
+
         case TECLA_A: 
-            if(tijolo.j > 0)tijolo.j--;
+            if(tijolo.j - tijolo.width/2 > 0 )
+                if(!collisionDetect(matrix, tijolo, LEFT))
+                    tijolo.j--;
         break;
+        
         case TECLA_D: 
-            if(tijolo.j < COLUMNS-1)tijolo.j++;
+            if(tijolo.j + tijolo.width/2 < COLUMNS-1)
+                if(!collisionDetect(matrix, tijolo, RIGHT))
+                    tijolo.j++;
+        
         case 'R':
         case TECLA_R: //GIRAR
-
+           if(!collisionDetect(matrix, tijolo, RIGHT)) 
            rotate(&tijolo);
         break;
     }

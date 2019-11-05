@@ -12,8 +12,8 @@ data:28/08/2019
 #include <conio.h>
 
 //Configuração das dimensoes da matriz principal do jogo
-#define COLUMNS 30
-#define ROWS 60
+#define COLUMNS 14
+#define ROWS 50
 
 //Configuração de teclas
 #define ESC 27
@@ -80,4 +80,4 @@ void initBar(Bloco *barra);
 */
 void rotate(Bloco *barra);
 
-int collisionDetect(char matrix[ROWS][COLUMNS],Bloco barra);
+int collisionDetect(char matrix[ROWS][COLUMNS],Bloco barra, int direcao);
