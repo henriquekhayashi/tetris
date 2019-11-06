@@ -75,14 +75,18 @@ int main()
     
     if(!collisionDetect(matrix, tijolo, 0)){
         drawBar(matrix, &tijolo, EMPTY);
+        // faz peça ir para baixo
         tijolo.i++;
-        // faz posiçao ir para baixo
-        //if(tijolo.i<ROWS-1) 
+        
+        
     }else{
+        //check
+
+        //nova peça
         initBar(&tijolo);
     }
     
-  //drawBar(matrix, &tijolo, EMPTY);
+  
     
 
    
