@@ -73,7 +73,12 @@ int main()
     
     //APAGAR
     
-    if(!collisionDetect(matrix, tijolo, 0)){
+    /*if(!collisionDetect(matrix, tijolo, 0)){
+        drawBar(matrix, &tijolo, EMPTY);
+        // faz peça ir para baixo
+        tijolo.i++;*/
+
+    if(!collisionBar(matrix, tijolo, UNCHECK_SIDE, NONE)){
         drawBar(matrix, &tijolo, EMPTY);
         // faz peça ir para baixo
         tijolo.i++;
@@ -105,15 +110,17 @@ int main()
             if(kbhit()) tecla = getch();
                 switch(tecla){
                     case LEFT: 
-                        if(tijolo.j - tijolo.width/2 > 0 )
+                       /* if(tijolo.j - tijolo.width/2 > 0 )
                                                                
-                        if(!collisionDetect(matrix, tijolo, LEFT))
+                        if(!collisionDetect(matrix, tijolo, LEFT))*/
+                        if(!collisionBar(matrix, tijolo, CHECK_SIDE, LEFT))
                          tijolo.j--;
                     break;
 
                     case RIGHT: 
-                        if(tijolo.j + tijolo.width/2 < COLUMNS-1)
-                        if(!collisionDetect(matrix, tijolo, RIGHT))
+                        /*if(tijolo.j + tijolo.width/2 < COLUMNS-1)
+                        if(!collisionDetect(matrix, tijolo, RIGHT))*/
+                        if(!collisionBar(matrix, tijolo, CHECK_SIDE, RIGHT))
                         tijolo.j++;
                     break;
                 }

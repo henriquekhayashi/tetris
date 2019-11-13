@@ -41,8 +41,12 @@ data:28/08/2019
 
 //Configurações de layou
 #define PIXEL 219
-
 #define EMPTY 32
+
+//Configurações de mecanismo de colisão
+#define CHECK_SIDE 1
+#define UNCHECK_SIDE 0
+#define NONE 0
 
 //Estrutura padrão de componentes
 typedef struct{
@@ -79,5 +83,16 @@ void initBar(Bloco *barra);
     rotacionar peça
 */
 void rotate(Bloco *barra);
+/*
+    colisão com a base
+*/
 
 int collisionDetect(char matrix[ROWS][COLUMNS],Bloco barra, int direcao);
+
+/*
+    colisão entre peças
+*/
+
+int collisionBar(char matrix[ROWS][COLUMNS],Bloco barra, int collisionSides, int side);
+
+//

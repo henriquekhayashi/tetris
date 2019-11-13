@@ -125,7 +125,8 @@ switch(barra->orientacao){
 
 void initBar(Bloco *barra){
 
-    barra->i=-2;
+    //barra->i=-2;
+    barra->i=2;
     barra->j = COLUMNS/2;
     barra->tipo = TIPO_I;
     barra->orientacao = ORIENTACAO_UP;
@@ -169,10 +170,11 @@ int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra, int direcao){
     int retorno = 0;
     int i;
     
-
+    //borda
     if ((barra.i + barra.height/2)  >= (ROWS-1))
         retorno = 1;
 
+    //peça
     switch(direcao){
         case LEFT:
             for(i=barra.i -(barra.height/2); i<=barra.i +(barra.height/2); i++)
@@ -192,6 +194,58 @@ int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra, int direcao){
 
     }
 
+    
+    return retorno;
+}
+
+int collisionBar(char matrix[ROWS][COLUMNS],Bloco barra, int collideSides, int side){
+
+    int retorno = 0;
+    int i;
+    
+    //COLISAO COM A BAASE
+    if((barra.i+1) >= ROWS)
+    retorno = 1;
+
+    //colisao com a base da barracom outras pecas
+    if (matrix[barra.i+1][barra.j] != EMPTY)
+        retorno = 1;
+    
+//colisão base horizontal
+int t2 = barra.width/2;
+if(matrix[barra.i+1][barra.j+t2] != EMPTY)
+retorno = 1;
+if(matrix[barra.i+1][barra.j-t2] != EMPTY)
+retorno = 1;
+
+//colisão lateral horizontal
+
+if(collideSides==1){
+    if(side==RIGHT && matrix[barra.i][barra.j + t2 + 1] != EMPTY)
+        retorno = 1;
+    if(side==RIGHT && barra.j + t2 +1 >=COLUMNS)
+        retorno = 1;
+
+    if(side==LEFT && matrix[barra.i][barra.j - t2 + 1] != EMPTY)
+        retorno = 1;
+    if(side==LEFT && barra.j - t2 - 1 < 0)
+        retorno =1;
+
+}
+
+//colisao lateral vertical
+if(collideSides==CHECK_SIDE &&
+    (barra.orientacao == ORIENTACAO_UP ||
+        barra.orientacao == ORIENTACAO_DOWN)){
+
+    int i;
+    for(i=0; i<barra.height; i++){
+        if(side==RIGHT && matrix[barra.i-i][barra.j+1] != EMPTY)
+        retorno = 1;
+        if(side==RIGHT && matrix[barra.i-i][barra.j-1] != EMPTY)
+        retorno = 1;
+    }
+        }
     
     return retorno;
 }
